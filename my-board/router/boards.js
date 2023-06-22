@@ -6,7 +6,10 @@ router.get('/', (req, res) => {
   Board.find()
       .then((boards) => {
         if (!boards.length) return res.status(404).send({ err: 'Boards not found' });
-        res.send(`find successfully: ${boards}`);
+        res.send({
+          success: true,
+          data: boards
+        });
       })
       .catch(err => res.status(500).send(err));
   });
