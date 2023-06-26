@@ -7,7 +7,7 @@ const Header = () => {
     <header>
       <Link to="/">홈</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/BoardList">게시판</Link>
+      <Link to="/board">게시판</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;
       {/* <Link to="/Login">로그인</Link> */}
       <hr />

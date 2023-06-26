@@ -23,5 +23,4 @@ mongoose
 app.use('/boards', require('./router/boards'));
 app.use('/', require('./router/homes'));
 
-
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

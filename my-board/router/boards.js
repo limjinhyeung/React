@@ -14,16 +14,23 @@ router.get('/', (req, res) => {
       .catch(err => res.status(500).send(err));
 });
 
-router.post('/insert', (req,res)=> {
+//create(INSERT)
+router.post('/', (req,res)=> {
   const { no, title, content } = req.body;
-
   try{
     Board.create({no, title, content});
-
-    res.redirect('/'); 
   }catch(err){
     next(err);
-  }
-})
+  };
+});
+
+//Find one (DETAIL paage)
+router.get('/:no',(req,res)=>{
+  Board.findOne({no:req.params.no}).then((board)=>{
+    res.send({
+      detail: board
+    });
+  });
+});
 
 module.exports = router;
