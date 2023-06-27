@@ -13,7 +13,7 @@ export default function BoardList(props){
         const no = parseInt(boards[boards.length-1].no)+1
 
         //navigate할때 값 넘기기(state:JSON으로 받을수 있다.)
-        navigate("/board/Add",{state: no});
+        navigate("/board/add",{state: no});
     }
 
     //데이터 불러오기 uesEffect뒤에 ,[] 붙이면 무한로딩 없다?

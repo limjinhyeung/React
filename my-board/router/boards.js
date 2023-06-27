@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Board = require('../models/board');
 
-// Find All
+// Find All(BOARDLIST page)
 router.get('/', (req, res) => {
   Board.find()
       .then((boards) => {
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       .catch(err => res.status(500).send(err));
 });
 
-//create(INSERT)
+//create(INSERT page)
 router.post('/', (req,res)=> {
   const { no, title, content } = req.body;
   try{
@@ -24,7 +24,7 @@ router.post('/', (req,res)=> {
   };
 });
 
-//Find one (DETAIL paage)
+//Find one (DETAIL page)
 router.get('/:no',(req,res)=>{
   Board.findOne({no:req.params.no}).then((board)=>{
     res.send({
@@ -32,5 +32,25 @@ router.get('/:no',(req,res)=>{
     });
   });
 });
+
+//updateOne(UPDATE Page)
+router.post('/:no', (req,res)=>{
+  const {title, content} = req.body;
+  try{
+    //.exec()를 붙여주니까 됐다..... 왜???
+    Board.updateOne({no:req.params.no},{$set : {title: title, content: content}}).exec()
+  } catch(err){
+    next(err);
+  };
+});
+
+
+router.delete('/:no',(req,res)=>{
+  try{ 
+    Board.deleteOne({no:req.params.no}).exec();
+  }catch(err){
+    next(err);
+  }
+})
 
 module.exports = router;
